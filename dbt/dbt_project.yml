@@ -10,10 +10,10 @@ models:
   green_travel:
     staging:
       +materialized: view
-      +dataset: staging
+      +schema: staging
     intermediate:
       +materialized: view
-      +dataset: intermediate
+      +schema: intermediate
     marts:
       +materialized: table
-      +dataset: marts
+      +schema: marts
