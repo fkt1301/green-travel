@@ -1,24 +1,25 @@
 FROM apache/airflow:2.8.1-python3.11
 
+# Copy uv binary directly from official image — no pip install needed
+COPY --from=ghcr.io/astral-sh/uv:0.10.9 /uv /uvx /bin/
+
+# uv env vars recommended for Docker
+ENV UV_NO_PROGRESS=1 \
+    UV_COMPILE_BYTECODE=1 \
+    UV_LINK_MODE=copy \
+    UV_SYSTEM_PYTHON=1
+
 USER root
 RUN apt-get update && apt-get install -y git && apt-get clean
 
-# Copy dependency files
+# Copy dependency files first (cached layer — only rebuilds if deps change)
 COPY pyproject.toml uv.lock ./
 
-# Switch to airflow user as required by the base image
-USER airflow
+# Install deps from lockfile — exact pinned versions, no pip needed
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --frozen --no-install-project --no-dev
 
-# Install uv then deps as airflow user
-RUN pip install --user uv && \
-    pip install --user \
-        dbt-core==1.7.0 \
-        dbt-bigquery==1.7.0 \
-        google-cloud-bigquery \
-        google-cloud-bigquery-storage \
-        db-dtypes \
-        requests \
-        pandas
+USER airflow
 
 # Copy dbt project
 COPY --chown=airflow:root dbt/ /opt/airflow/dbt/
