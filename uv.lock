@@ -528,6 +528,43 @@ wheels = [
 ]
 
 [[package]]
+name = "emissions-analytics"
+version = "0.1.0"
+source = { virtual = "." }
+dependencies = [
+    { name = "db-dtypes" },
+    { name = "dbt-bigquery" },
+    { name = "dbt-core" },
+    { name = "google-cloud-bigquery" },
+    { name = "google-cloud-bigquery-storage" },
+    { name = "pandas" },
+    { name = "requests" },
+]
+
+[package.dev-dependencies]
+dev = [
+    { name = "pytest" },
+    { name = "ruff" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "db-dtypes", specifier = ">=1.1.1" },
+    { name = "dbt-bigquery", specifier = ">=1.7.0" },
+    { name = "dbt-core", specifier = ">=1.7.0" },
+    { name = "google-cloud-bigquery", specifier = ">=3.11.0" },
+    { name = "google-cloud-bigquery-storage", specifier = ">=2.22.0" },
+    { name = "pandas", specifier = ">=2.0.0" },
+    { name = "requests", specifier = ">=2.31.0" },
+]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "pytest", specifier = ">=7.4.0" },
+    { name = "ruff", specifier = ">=0.1.0" },
+]
+
+[[package]]
 name = "fastjsonschema"
 version = "2.21.2"
 source = { registry = "https://pypi.org/simple" }
@@ -797,43 +834,6 @@ wheels = [
 [package.optional-dependencies]
 grpc = [
     { name = "grpcio" },
-]
-
-[[package]]
-name = "green-travel"
-version = "0.1.0"
-source = { virtual = "." }
-dependencies = [
-    { name = "db-dtypes" },
-    { name = "dbt-bigquery" },
-    { name = "dbt-core" },
-    { name = "google-cloud-bigquery" },
-    { name = "google-cloud-bigquery-storage" },
-    { name = "pandas" },
-    { name = "requests" },
-]
-
-[package.dev-dependencies]
-dev = [
-    { name = "pytest" },
-    { name = "ruff" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "db-dtypes", specifier = ">=1.1.1" },
-    { name = "dbt-bigquery", specifier = ">=1.7.0" },
-    { name = "dbt-core", specifier = ">=1.7.0" },
-    { name = "google-cloud-bigquery", specifier = ">=3.11.0" },
-    { name = "google-cloud-bigquery-storage", specifier = ">=2.22.0" },
-    { name = "pandas", specifier = ">=2.0.0" },
-    { name = "requests", specifier = ">=2.31.0" },
-]
-
-[package.metadata.requires-dev]
-dev = [
-    { name = "pytest", specifier = ">=7.4.0" },
-    { name = "ruff", specifier = ">=0.1.0" },
 ]
 
 [[package]]

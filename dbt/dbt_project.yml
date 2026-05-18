@@ -1,6 +1,6 @@
 name: emissions_analytics
 version: '1.0.0'
-profile: green_travel
+profile: emissions_analytics
 
 model-paths: ["models"]
 test-paths: ["tests"]
