@@ -7,7 +7,7 @@ test-paths: ["tests"]
 macro-paths: ["macros"]
 
 models:
-  green_travel:
+  emissions_analytics:
     staging:
       +materialized: view
       +schema: staging
