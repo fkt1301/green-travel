@@ -1,0 +1,40 @@
+version: 2
+
+models:
+  - name: fct_co2_emissions
+    description: "Central fact table. One row per country per year."
+    columns:
+      - name: emission_id
+        tests: [unique, not_null]
+      - name: country_code
+        tests: [not_null]
+      - name: reference_year
+        tests: [not_null]
+      - name: co2_mt
+        tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+                max_value: 40000
+
+  - name: dim_country
+    description: "Country dimension with latest available profile"
+    columns:
+      - name: country_key
+        tests: [unique, not_null]
+
+  - name: fct_emissions_trend
+    description: "Year-over-year emissions change per country"
+    columns:
+      - name: emission_id
+        tests: [unique, not_null]
+      - name: country_code
+        tests: [not_null]
+
+  - name: fct_country_ranking
+    description: "Countries ranked by emissions, per capita, and fossil dependency per year"
+    columns:
+      - name: country_code
+        tests: [not_null]
+      - name: reference_year
+        tests: [not_null]
