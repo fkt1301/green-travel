@@ -1,4 +1,4 @@
-green_travel:
+emissions_analytics:
   target: dev
   outputs:
     dev:

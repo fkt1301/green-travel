@@ -17,7 +17,7 @@ with DAG(
     schedule_interval="0 6 * * *",   # daily at 6am
     start_date=datetime(2026, 1, 1),
     catchup=False,
-    tags=["green-travel", "dbt", "bigquery"],
+    tags=["emissions-analytics", "dbt", "bigquery"],
 ) as dag:
 
     def ingest_owid():
